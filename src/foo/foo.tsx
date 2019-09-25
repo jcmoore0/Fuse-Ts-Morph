@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { lazy } from "react"
 
-const Bar = React.lazy(() => import('../bar/bar'))
-
+const Bar = lazy(async () => {
+  let obj = await import("../bar/bar")
+  return typeof obj.default === "function" ? obj : obj.default;
+})
 const Foo = () => {
   return (
     <div>
@@ -11,4 +13,4 @@ const Foo = () => {
   )
 }
 
-export default Foo
+export default Foo;

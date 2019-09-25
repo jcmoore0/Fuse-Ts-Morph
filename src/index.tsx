@@ -1,7 +1,11 @@
-import React, { lazy, Suspense } from 'react'
-import * as ReactDOM from 'react-dom'
+import React, { lazy, Suspense } from "react";
+import * as ReactDOM from "react-dom";
 
-const Foo = React.lazy(() => import('./foo/foo'))
+const Foo = lazy(async () => {
+  let o = await import("./foo/foo")
+  return typeof o.default === 'function'?o:o.default
+  }
+)
 
 const App = () => {
   return (
@@ -13,4 +17,4 @@ const App = () => {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById("root"))
