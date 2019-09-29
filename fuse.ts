@@ -17,7 +17,7 @@ class Context {
         root: ".cache"
       },
       watch: true,
-      devServer: this.runServer?{open:true}:false,
+      devServer: this.isProduction ? false : { httpServer: { port: 3000 }, open:true },
     })
 }
 const { task, rm, exec } = sparky<Context>(Context)
